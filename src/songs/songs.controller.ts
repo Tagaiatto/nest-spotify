@@ -1,10 +1,15 @@
-import { Controller, Delete, Get, Put } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
 
 @Controller('songs')
 export class SongsController {
     @Get()
     findAll() {
         return 'Find all SongsController';
+    }
+    
+    @Post()
+    create() {
+        return 'Create a new song SongsController';
     }
 
     @Get(':id')
