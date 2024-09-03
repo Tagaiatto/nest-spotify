@@ -1,4 +1,6 @@
+import { Type } from "class-transformer";
 import { IsArray, IsDateString, IsMilitaryTime, IsNotEmpty, IsString } from "class-validator";
+import { ArtistDTO } from "./artist-dto";
 
 export class CreateSongDTO {
     @IsString()
@@ -7,8 +9,8 @@ export class CreateSongDTO {
 
     @IsNotEmpty()
     @IsArray()
-    @IsString()
-    readonly artists: string[];
+    @Type(() => ArtistDTO)
+    readonly artists: ArtistDTO[];
 
     @IsNotEmpty()
     @IsDateString()
@@ -18,3 +20,4 @@ export class CreateSongDTO {
     @IsNotEmpty()
     readonly duration: Date;
 }
+
