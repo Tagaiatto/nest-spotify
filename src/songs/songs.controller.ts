@@ -1,11 +1,11 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDTO } from './dto/create-song-dto';
 
 @Controller('songs')
 export class SongsController {
-    constructor(private songsService: SongsService){}
-    
+    constructor(private songsService: SongsService) { }
+
     @Get()
     findAll() {
         try {
@@ -13,8 +13,8 @@ export class SongsController {
 
         } catch (error) {
             throw new HttpException(
-                'Try Again Later', 
-                HttpStatus.INTERNAL_SERVER_ERROR, 
+                'Try Again Later',
+                HttpStatus.INTERNAL_SERVER_ERROR,
                 {
                     cause: error
                 }
@@ -23,12 +23,16 @@ export class SongsController {
     }
 
     @Post()
-    create(@Body() createSongDTO : CreateSongDTO) {
+    create(@Body() createSongDTO: CreateSongDTO) {
         return this.songsService.create(createSongDTO);
     }
 
     @Get(':id')
-    findOne() {
+    findOne(@Param(
+                'id', 
+                new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })
+            ) 
+            id: number) {
         return 'Find one SongsController';
     }
 
