@@ -1,13 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { DevConfigService } from './common/providers/DevConfigService';
 
 @Injectable()
 export class AppService {
-  constructor(private devConfigService: DevConfigService) {
+  constructor(
+    private devConfigService: DevConfigService,
+    @Inject('CONFIG')
+    private config: { port: string },
+  ) {
 
   }
 
   getHello(): string {
-    return 'AppService getHello devConfigService: ' + JSON.stringify(this.devConfigService);
+    return 'AppService getHello devConfigService: ' + JSON.stringify(this.devConfigService) + '/ config: ' + JSON.stringify(this.config);
   }
 }
