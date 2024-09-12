@@ -6,6 +6,7 @@ import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/providers/DevConfigService';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
 
 @Module({
   imports: [
@@ -31,9 +32,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   ],
 })
 export class AppModule implements NestModule {
+  constructor(private dataSource: DataSource) {
+    console.log(dataSource.driver.database);
+  }
   configure(consumer: MiddlewareConsumer) {
-    // consumer.apply(LoggerMiddleware).forRoutes('songs');
-    // consumer.apply(LoggerMiddleware).forRoutes(SongsController);
     consumer.apply(LoggerMiddleware).forRoutes({ path: 'songs', method: RequestMethod.POST });
 
   }
