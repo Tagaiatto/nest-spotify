@@ -5,9 +5,22 @@ import { SongsModule } from './songs/songs.module';
 import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/providers/DevConfigService';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [SongsModule],
+  imports: [
+    SongsModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'spotifyadm',
+      password: 'admpassword',
+      database: 'spotify',
+      entities: [],
+      synchronize: true
+    }),
+  ],
   controllers: [AppController],
   providers: [
     AppService,
