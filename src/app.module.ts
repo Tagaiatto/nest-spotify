@@ -33,6 +33,7 @@ import { DataSource } from 'typeorm';
 })
 export class AppModule implements NestModule {
   constructor(private dataSource: DataSource) {
+    console.log('AppModule constructor dataSource: ');
     console.log(dataSource.driver.database);
   }
   configure(consumer: MiddlewareConsumer) {
