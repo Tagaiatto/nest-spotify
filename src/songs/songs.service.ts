@@ -31,4 +31,8 @@ export class SongsService {
     findOne(id:number): Promise<Song> {
         return this.songRepository.findOneBy({ id });
     }
+
+    async remove(id: number): Promise<void> {
+        await this.songRepository.delete(id);
+    }
 }

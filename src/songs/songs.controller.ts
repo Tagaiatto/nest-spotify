@@ -50,7 +50,7 @@ export class SongsController {
     }
 
     @Delete(':id')
-    delete() {
-        return 'Delete one SongsController';
+    delete(@Param('id', ParseIntPipe) id:number): Promise<void> {
+        return this.songsService.remove(id);
     }
 }
