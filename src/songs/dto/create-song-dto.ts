@@ -9,8 +9,8 @@ export class CreateSongDTO {
 
     @IsNotEmpty()
     @IsArray()
-    @Type(() => ArtistDTO)
-    readonly artists: ArtistDTO[];
+    // @Type(() => ArtistDTO)
+    readonly artists: string[];
 
     @IsNotEmpty()
     @IsDateString()
