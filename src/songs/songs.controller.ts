@@ -40,8 +40,8 @@ export class SongsController {
                 'id', 
                 new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })
             ) 
-            id: number) {
-        return 'Find one SongsController';
+            id: number): Promise<Song> {
+        return this.songsService.findOne(id);
     }
 
     @Put(':id')
