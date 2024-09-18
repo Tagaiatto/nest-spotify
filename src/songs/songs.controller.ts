@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Param
 import { SongsService } from './songs.service';
 import { CreateSongDTO } from './dto/create-song-dto';
 import { Connection } from 'src/common/constants/connection';
+import { Song } from './entities/songs.entity';
 
 @Controller('songs')
 export class SongsController {
@@ -14,7 +15,7 @@ export class SongsController {
     }
 
     @Get()
-    findAll() {
+    findAll(): Promise<Song[]> {
         try {
             return this.songsService.findAll();
 
@@ -30,7 +31,7 @@ export class SongsController {
     }
 
     @Post()
-    create(@Body() createSongDTO: CreateSongDTO) {
+    create(@Body() createSongDTO: CreateSongDTO): Promise<Song> {
         return this.songsService.create(createSongDTO);
     }
 
