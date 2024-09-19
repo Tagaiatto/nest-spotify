@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Song } from './entities/songs.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { CreateSongDTO } from './dto/create-song-dto';
+import { UpdateSongDTO } from './dto/update-song-dto';
 
 @Injectable()
 export class SongsService {
@@ -34,5 +35,9 @@ export class SongsService {
 
     async remove(id: number): Promise<void> {
         await this.songRepository.delete(id);
+    }
+
+    update(id: number, recordToUpdate: UpdateSongDTO): Promise<UpdateResult> {
+        return this.songRepository.update(id, recordToUpdate);
     }
 }
