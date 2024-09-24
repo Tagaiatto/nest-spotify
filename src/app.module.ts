@@ -8,6 +8,8 @@ import { DevConfigService } from './common/providers/DevConfigService';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Song } from './songs/entities/songs.entity';
+import { User } from './users/entities/users.entity';
+import { Artist } from './artists/entities/artists.entity';
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { Song } from './songs/entities/songs.entity';
       username: 'spotifyadm',
       password: 'admpassword',
       database: 'spotify',
-      entities: [Song],
+      entities: [Song, User, Artist],
       synchronize: true
     }),
   ],
