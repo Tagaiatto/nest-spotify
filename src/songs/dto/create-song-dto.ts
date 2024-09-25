@@ -1,5 +1,5 @@
 import { Type } from "class-transformer";
-import { IsArray, IsDateString, IsMilitaryTime, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsArray, IsDateString, IsMilitaryTime, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 import { ArtistDTO } from "./artist-dto";
 
 export class CreateSongDTO {
@@ -10,7 +10,8 @@ export class CreateSongDTO {
     @IsNotEmpty()
     @IsArray()
     // @Type(() => ArtistDTO)
-    readonly artists: string[];
+    @IsNumber({}, { each: true })
+    readonly artists;
 
     @IsNotEmpty()
     @IsDateString()
