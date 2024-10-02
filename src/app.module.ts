@@ -12,11 +12,15 @@ import { User } from './users/entities/users.entity';
 import { Artist } from './artists/entities/artists.entity';
 import { Playlist } from './playlists/entities/playlists.entity';
 import { PlayListModule } from './playlists/playlists.module';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     SongsModule,
     PlayListModule,
+    UsersModule,
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
