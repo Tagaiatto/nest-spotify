@@ -33,7 +33,9 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "typeorm": "^0.3.20",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "@nestjs/passport": "^9.0.3",
+    "passport": "^0.6.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
